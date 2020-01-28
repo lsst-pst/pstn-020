@@ -1,166 +1,128 @@
+
 \section{Introduction}
 
-{\bf Eventually, please replace all of the remaining text with your paper text.}
-\vskip 0.4in
+   \note{
+      Overall outline is strongly inspired by the HSC pipeline paper, though
+      that will evolve as content is filled in.
+      That paper relied heavily on having characterizations of pipeline performance
+      in other papers, and I'm hoping we can do the same here.
 
+      Ideally those would be DR1 papers, not construction papers, AND THIS WOULD BE
+      TOO - publishing a DR pipeline paper before processing for the first DR has
+      actually started is a recipe for wasting time writing throwaway text.
+      We could substitute ``some informal DR based on commissioning data'' for ``DR1''
+      above, if such a thing happens.  Important point is that this paper shouldn't
+      go beyond outline form (except perhaps in the intro) until we start
+      processing.
+   }
 
-The LSST Construction Project team needs to document the as-built hardware and software
-(see LSE-79 and LSE-390 for details). Although this activity will likely continue well into the operations phase, the majority 
-of anticipated documents will be necessary to enable efficient and robust early science with the LSST 
-facility and thus must be available, at least in a draft form, by the first data release. 
+\subsection{LSST/Rubin Overview}
 
-As a first step, we are now assembling teams that will be in charge of delivering these documents.
-An initial paper list collated by subsystem leaders includes about 40 papers that will be submitted 
-to relevant professional journals. Therefore, this deliverable represents a major undertaking
-and we need to start early. In addition, the commissioning period will be shorter than anticipated 
-due to various delays in construction  and thus the time to complete these papers will be
-shorter, too. Although most of these papers cannot be finished before the end of construction 
-because they will require analysis of LSST commissioning data, we can significantly mitigate
-the risk that they will never be finished by starting early. The early start will also help 
-mitigate another source of stress for the team during the busy commissioning phase. 
+\subsection{Terminology}
 
- 
-\section{Initial Plan} 
+   \note{
+      \begin{itemize}
+         \item visits
+         \item tracts
+         \item patches
+         \item footprints
+         \item ...
+      \end{itemize}
+   }
 
-The subsystem leaders have assembled an initial list of papers, listed in Appendix. 
-It is likely that this list will evolve with time. 
-Each paper has an editor assigned to it. Each editor is meant to be a team leader
-who will be initially responsible for the completion of the assigned paper (or perhaps 
-until somone else from the team assumes this leadership role). The editor is not 
-necessarily the team member who will do most of the required work, or who will 
-eventually become the first author. Both issues will be handled by on an individual team basis. 
+\subsection{Related Papers}
 
-\subsection{The timeline} 
+   \note{
+      \begin{itemize}
+         \item Prompt products paper is obviously relevant.  Whether it comes out first depends on whether prompt processing needs to wait for DR1.  If it does come out first, we may want a new algorithms paper for both DR and prompt papers to refer to.  If not, might make more sense for prompt paper to refer to DR paper for algorithms.
+         \item Will RHL's "Calibration Strategy" paper actually include the pipeline steps involved in making both traditional master calibrations, and fancier things like monochromatic flats and astrometric characterizations of the camera?  I am not including them below (yet), but they need to be covered somewhere.  Note that these are the kinds of things that have merited full papers of their own in other surveys.
+         \item Need to identify papers that characterize pipeline performance (split into astrometry, photometry, ...?).  May come out later than this paper.  Trying to fully characterize pipeline performance while describing it is a recipe for a 200 page paper.
+      \end{itemize}
+   }
 
-We would like to have all the sections that do not depend on commissioning data 
-written and reviewed by February 2021. If we accomplish this goal, we will both
-have easier time completing these papers, and the team will be less stressed during
-the commissioning phase. 
+\section{Software Architecture}
 
-Our initial timeline is as follows (the further into the future, the less certain it is): 
-\begin{enumerate} 
-\item 
-Subsystem leads assemble the initial list of papers (DONE)
-\item
-Setup latex templates and email exploders (lsst-constrpapers) (DONE)
-\item
-Schedule the first telecon to discuss task, overall plan and timeline (Oct 2019).
-\item 
-Delivery of paper outlines and the second telecon (Jan 2020). Each paper
-outline should at least contain the list of all sections, their lead authors, and
-a few sentences about the section scope. Overachievers can add a list of figures etc.
-for extra credit. 
-\item
-First rough draft of sections that can be written without having the LSST commissioning
-data and the third telecon (June 2020). These drafts should at least include subsection
-structure, lists of planned tables, figures, rough text,  and identification of any impediments 
-to make the Oct. deadline for drafts ready for review (so that we can replan if need be). 
-\item 
-Sections that can be written without having the data ready for an internal project review and
-the fourth telecon (Nov 2020). 
-\item
-Reviews available and the fifth telecon (Feb 2021)
-\item
-Implementation of the reviewers' comments (from Feb 2021 until first light) 
-\item 
-Final drafts, including sections that depend on LSST data, available for
-review and the sixth telecon (Aug 2022)
-\item
-Implementation of the reviewers' comments (from Aug 2021 until the start of operations, 
-planned for Oct 3, 2022).  Proceeding with submissions, details TBD...
-\end{enumerate}
+   \note{
+      \begin{itemize}
+         \item This section is common to DR and prompt, and should only go in one of those papers.
+      \end{itemize}
+   }
 
+\section{Pipelines and Data Products}
 
+   \note{
+      Organization here follows actual pipeline flow, and does not attempt to go into details.
+      This is what we did in both the HSC Pipeline Paper and LDM-151.
+   }
 
+   \note{
+      Present data products as a table, with references to the pipeline sections
+      that finalize them.
+   }
 
-\section{Some technicalities: author list and standard LSST references} 
+\subsection{Preliminary Image Characterization}
 
-Thank you Tim Jenness and Wil O'Mullane for helping with templates! 
+\subsection{Relative Photometric Calibration}
 
-\subsection{The LSST LaTeX Classes}
+\subsection{Relative Astrometric Calibration}
 
-Please see the installation instructions\footnote{\url{https://lsst-texmf.lsst.io/install.html}} 
-for lsst-texmf. Once you have it installed, you should be able to compile your paper
-using make. 
+\subsection{Final Image Characterization and Source Measurement}
 
-\subsection{How to handle author list?} 
+   \note{Finalizes PVIs, Sources}
 
-Authors come from the authors.yaml file --  find the author ids in the lsst-texmf/etc/authordb.yaml - use db2authors to get the authors and institutes from the db. 
+\subsection{Coaddition}
 
-{\bf XXX Wil, the above is unclear: need more detail about how to use db2authors,
-what is its output and what to do with it...} 
+   \note{Finalizes coadd images}
 
+\subsection{Image Differencing}
 
-\subsection{How to handle LSST standard references?} 
+   \note{Finalizes difference images, DIASources}
 
-The papers should cite standard LSST references\footnote{See \url{https://github.com/lsst-pst/LSSTreferences}}, 
-where appropriate. For the usage, please see below.  These examples all use the ADS handle, unless they are 
-project docs then the use the project handle like LSE-17.
+\subsection{Object Definition and Measurement}
 
-All are on the lsst-texmf which you can get from \url{http://lsst-texmf.lsst.io}
+\note{Nearly-finalizes Objects, DIAObjects}
 
+   \note{
+      This will probably be multiple subsections later, but I don't yet know
+      what they will be.
+   }
 
-\subsubsection{LSST System and Science}
+\subsection{Forced Photometry}
 
-The LSST system (brief overview of telescope, camera and data management subsystems),
-science drivers and science forecasts are described in:
+\note{Finalizes ForcedSource}
 
-\begin{itemize}
-\item LSST Science Requirements Document: \cite{LPM-17}.
-\item LSST overview paper: \cite{2008arXiv0805.2366I}.
-\item LSST Science Book: \cite{abell2009lsst}.
-\end{itemize}
-%------------------------------------------------------------------------------
+\subsection{Postprocessing}
 
+\note{Finalizes everything else.}
 
-\subsubsection{Simulations}
+\section{Algorithms}
 
-The LSST simulations are described in a series of papers. Use of the LSST simulations should cite the LSST simulations overview paper \cite{2014SPIE.9150E..14C} and the specific simulation tools used:
+\subsection{Instrument Signature Removal}
 
-\begin{itemize}
-\item LSST Catalogs (CatSim): \cite{2014SPIE.9150E..14C}
-\item Feature-Based Scheduler: \cite{2018arXiv181004815N}
-\item Operations Simulator (OpSim): Scheduler \cite{2016SPIE.9910E..13D}, SOCS \cite{2016SPIE.9911E..25R}
-\item Metrics Analysis Framework (MAF): \cite{2014SPIE.9149E..0BJ}
-\item Image simulations (Phosim): \cite{2015ApJS..218...14P}
-\item Sky brightness model: \cite{2016SPIE.9910E..1AY}
-\item LSST Performance for NEO (or moving object) discovery: \cite{2018Icar..303..181J}
-\end{itemize}
-%------------------------------------------------------------------------------
+\subsection{PSF Modeling}
 
+\subsection{Aperture Corrections}
 
-\subsubsection{Data Management}
+\subsection{Cosmic Ray Detection}
 
-LSST data management system and the data products are described in:
+\subsection{Background Subtraction}
 
-\begin{itemize}
-  \item The LSST Data Management System: \cite{2015arXiv151207914J}
-  \item Data Products Definition Document: \cite{LSE-163}
-\end{itemize}
- %------------------------------------------------------------------------------
+\subsection{Detection}
 
+\subsection{Deblending}
 
-\subsubsection{Camera}
+\subsection{Source/Object Measurement}
 
-\begin{itemize}
-   \item Design and development of the LSST camera: \cite{2010SPIE.7735E..0JK}
-\end{itemize}
-%------------------------------------------------------------------------------
+   \note{
+      Many subsubsections here.
+   }
 
+\section{Future Work and Conclusions}
 
-\subsubsection{Telescope and Site}
+   \note{
+      What are the big known issues?
 
-\begin{itemize}
-   \item Telescope and site overview and status in 2014:  \cite{2014SPIE.9145E..1AG}
-\end{itemize}
-%------------------------------------------------------------------------------
+      What major improvements are planned?
 
-\subsubsection{System Engineering}
-
-\begin{itemize}
-   \item LSST systems engineering: \cite{2014SPIE.9150E..0MC}
-   \item System verification and validation: \cite{2014SPIE.9150E..0NS}
-\end{itemize}
-%
-
-
+      Reminder of related characterization papers.
+   }
